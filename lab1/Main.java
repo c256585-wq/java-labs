@@ -1,3 +1,6 @@
+// изменено 24.10.2026: УПРОСТИЛ КОД НЕКОТОРЫХ ЗАДАНИЙ + ДОПИСАЛ ПАРУ НЕДОСТАЮЩИХ УСЛОВИЙ ДЛЯ ОБРАБОТОК ОШИБОК + переделано задание номер 3.3 под условие "инструкцию if использовать не следует".
+// Вариант 5
+
 import java.util.Scanner;
 
 public class Main {
@@ -14,12 +17,7 @@ public class Main {
 
     // 2. Сумма знаков
     public int sumLastNums(int x) {
-        x = x < 0 ? -x : x;
-
-        int last = x % 10;
-        int secondLast = x / 10 % 10;
-
-        return last + secondLast;
+        return x % 10 + x / 10 % 10;
     }
 
     // 6. Большая буква
@@ -29,18 +27,13 @@ public class Main {
 
     // 7. Диапазон
     public boolean isInRange(int a, int b, int num) {
-        if (a > b) {
-            int temp = a;
-            a = b;
-            b = temp;
-        }
-
-        return num >= a && num <= b;
+        return num >= Math.min(a, b)
+                && num <= Math.max(a, b);
     }
 
     // 10. Многократный вызов
     public int lastNumSum(int a, int b) {
-        return a % 10 + b % 10;
+        return Math.abs(a % 10) + Math.abs(b % 10);
     }
 
     // ЗАДАНИЕ 2. УСЛОВИЯ
@@ -131,31 +124,31 @@ public class Main {
     public String reverseListNums(int x) {
         String result = "";
 
-        for (int i = x; i >= 0; i--) {
-            result = result + i;
-
-            if (i > 0) {
-                result = result + " ";
+        if (x >= 0) {
+            for (int i = x; i >= 0; i--) {
+                result += i + " ";
+            }
+        } else {
+            for (int i = x; i <= 0; i++) {
+                result += i + " ";
             }
         }
 
-        return result;
+        return result.trim();
     }
+
 
     // 3. Четные числа
     public String chet(int x) {
         String result = "";
 
         for (int i = 0; i <= x; i += 2) {
-            result = result + i;
-
-            if (i + 2 <= x) {
-                result = result + " ";
-            }
+            result += i + " ";
         }
 
-        return result;
+        return result.trim();
     }
+
 
     // 7. Квадрат
     public void square(int x) {
